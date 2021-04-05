@@ -28,7 +28,7 @@ DEBUG = True
 
 ALLOWED_HOSTS = ['*']
 
-# SERVER = os.environ["SERVER"]
+SERVER = os.environ["SERVER"]
 
 
 # Application definition
@@ -81,16 +81,29 @@ WSGI_APPLICATION = 'gdse.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/3.1/ref/settings/#databases
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'prod',
-        'USER': 'postgres',
-        'PASSWORD': 'jrBthEC!ZUi4',
-        'HOST': 'gdse.clsrq9deqixe.ap-south-1.rds.amazonaws.com',
-        'PORT': '5432',
+
+if SERVER == "development":
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.postgresql_psycopg2',
+            'NAME': 'dev',
+            'USER': 'postgres',
+            'PASSWORD': 'jrBthEC!ZUi4',
+            'HOST': 'gdse.clsrq9deqixe.ap-south-1.rds.amazonaws.com',
+            'PORT': '5432',
+        }
     }
-}
+else:
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.postgresql_psycopg2',
+            'NAME': 'prod',
+            'USER': 'postgres',
+            'PASSWORD': 'jrBthEC!ZUi4',
+            'HOST': 'gdse.clsrq9deqixe.ap-south-1.rds.amazonaws.com',
+            'PORT': '5432',
+        }
+    }
 
 
 # Password validation
