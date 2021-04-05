@@ -1,8 +1,8 @@
 import uuid
 from rest_framework.views import APIView
-from core.models import Product, Category
+from core.models import Product, Category, ProductContent
 from middleware.response import success
-from product.serializer.dto import ProductDto
+from product.serializer.dto import ProductDto, ProductContentDto
 
 
 class ProductVehicleListView(APIView):
@@ -13,6 +13,24 @@ class ProductVehicleListView(APIView):
             'products': ProductDto(products, many=True).data
         }
         return success(payload, 'products fetched successfully', True)
+
+
+class ProductContentView(APIView):
+    def get(self, request, product_id):
+        query = {'is_archived': False}
+        if is_valid_uuid(product_id):
+            query["uuid"] = product_id
+        else:
+            query["slug"] = product_id
+        product = Product.objects.filter(**query).first()
+        if not product:
+            return success({}, "invalid product id", False)
+
+        content = ProductContent.objects.filter(product=product).first()
+        if not content:
+            return success({}, "no content is present", False)
+
+        return success(ProductContentDto(content).data, "details fetched successfully", True)
 
 
 class CategoryWiseVehicleListView(APIView):
