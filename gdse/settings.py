@@ -84,7 +84,7 @@ WSGI_APPLICATION = 'gdse.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'dev',
+        'NAME': 'prod',
         'USER': 'postgres',
         'PASSWORD': 'jrBthEC!ZUi4',
         'HOST': 'gdse.clsrq9deqixe.ap-south-1.rds.amazonaws.com',
