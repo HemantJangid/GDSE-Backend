@@ -19,5 +19,5 @@ class ProductDto(serializers.ModelSerializer):
 class ProductContentDto(serializers.ModelSerializer):
     class Meta:
         model = ProductContent
-        fields = ('landing_page_title', 'landing_page_image', 'brochure_link', 'info_page_content_1',
-                  'info_page_content_2', 'info_page_metrics_1')
+        fields = ('landing_page_title1', 'landing_page_title2', 'landing_page_bg_text', 'landing_page_image', 'brochure_link', 'info_page_content_1',
+                  'info_page_content_2', 'info_page_metrics_1', 'info_page_metrics_2')
