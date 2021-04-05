@@ -4,4 +4,4 @@ python manage.py collectstatic --noinput
 sudo cp -a static/. /var/www/html/
 rm -f nohup.out
 fuser -k 8000/tcp
-nohup gunicorn -b 0.0.0.0:8000 emotorad.wsgi &
+nohup gunicorn -b 0.0.0.0:8000 gdse.wsgi &
