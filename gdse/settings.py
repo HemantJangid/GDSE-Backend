@@ -45,6 +45,7 @@ INSTALLED_APPS = [
     'product',
     'django_better_admin_arrayfield',
     'corsheaders',
+    'storages',
 ]
 
 MIDDLEWARE = [
@@ -144,3 +145,19 @@ USE_TZ = True
 
 STATIC_ROOT = os.path.join(BASE_DIR, "static/")
 STATIC_URL = '/static/'
+
+
+# Media Files
+
+# AWS Keys
+AWS_ACCESS_KEY_ID = 'AKIASTN37N6UIHJZ2TN3'
+AWS_SECRET_ACCESS_KEY = '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'
+AWS_STORAGE_BUCKET_NAME = 'gdse-assets'
+AWS_S3_FILE_OVERWRITE = False
+AWS_DEFAULT_ACL = 'public-read'
+AWS_LOCATION = 'media'
+AWS_S3_REGION_NAME = 'ap-south-1'
+AWS_S3_CUSTOM_DOMAIN = '%s.s3.amazonaws.com' % AWS_STORAGE_BUCKET_NAME
+DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
+
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media/')
