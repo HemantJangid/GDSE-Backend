@@ -18,8 +18,7 @@ class Category(models.Model):
     uuid = models.UUIDField(default=uuid.uuid4, unique=True)
     name = models.CharField(max_length=255, unique=True)
     display_position = models.IntegerField()
-    image_url = models.CharField(
-        max_length=255, null=True, blank=True, default='')
+    image_url = models.FileField(blank=True, null=True)
     bg_image = models.CharField(
         max_length=255, null=True, blank=True, default='')
     title = models.CharField(max_length=255, null=True, blank=True, default='')
@@ -42,8 +41,7 @@ class Product(models.Model):
     category = models.ForeignKey(Category, on_delete=models.CASCADE)
     name = models.CharField(max_length=255, unique=True)
     display_position = models.IntegerField(blank=True, null=True)
-    image_url = models.CharField(
-        max_length=255, null=True, blank=True, default='')
+    image_url = models.FileField(blank=True, null=True)
     bg_image = models.CharField(
         max_length=255, null=True, blank=True, default='')
     title = models.CharField(max_length=255, null=True, blank=True, default='')
@@ -59,6 +57,15 @@ class Product(models.Model):
         return str(self.name)
 
 
+class ProductImage(models.Model):
+    product = models.ForeignKey(Product, on_delete=models.CASCADE)
+    name = models.CharField(max_length=255, null=True, blank=True, default='')
+    image = models.FileField(blank=True, null=True)
+
+    def __str__(self):
+        return str(self.name)
+
+
 class ProductContent(models.Model):
     product = models.OneToOneField(Product, on_delete=models.CASCADE)
     landing_page_title1 = models.CharField(
@@ -67,8 +74,7 @@ class ProductContent(models.Model):
         max_length=255, null=True, blank=True)
     landing_page_bg_text = models.CharField(
         max_length=255, null=True, blank=True)
-    landing_page_image = models.CharField(
-        max_length=255, null=True, blank=True, default='')
+    landing_page_image = models.FileField(blank=True, null=True)
     brochure_link = models.CharField(max_length=255, null=True, blank=True)
     info_page_content_1 = models.TextField(null=True, blank=True)
     info_page_content_2 = models.TextField(null=True, blank=True)

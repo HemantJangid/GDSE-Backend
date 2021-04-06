@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from core.models import Category, Product, ProductContent
+from core.models import Category, Product, ProductContent, ProductImage
 
 
 class CategoryDto(serializers.ModelSerializer):
@@ -14,6 +14,12 @@ class ProductDto(serializers.ModelSerializer):
         model = Product
         fields = ('uuid', 'main_product', 'category', 'name',
                   'display_position', 'image_url', 'bg_image', 'title', 'slug')
+
+
+class ProductImageDto(serializers.ModelSerializer):
+    class Meta:
+        model = ProductImage
+        fields = ('name', 'image')
 
 
 class ProductContentDto(serializers.ModelSerializer):
