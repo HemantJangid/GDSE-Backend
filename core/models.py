@@ -93,12 +93,12 @@ class ProductContent(models.Model):
 
 
 class Order(models.Model):
-    first_name = models.CharField(max_length=255, unique=True)
-    last_name = models.CharField(max_length=255, unique=True)
+    name = models.CharField(max_length=255, blank=True, null=True)
+    company_name = models.CharField(max_length=255, blank=True, null=True)
     phone = models.CharField(max_length=255, blank=True, null=True)
     email = models.CharField(max_length=255, blank=True, null=True)
     product_name = models.CharField(max_length=255, blank=True, null=True)
-    address = models.CharField(max_length=255, blank=True, null=True)
+    country = models.CharField(max_length=255, blank=True, null=True)
 
     created_on = models.DateTimeField(auto_now_add=True)
     updated_on = models.DateTimeField(auto_now=True)
@@ -108,3 +108,33 @@ class Order(models.Model):
 
     def __str__(self):
         return str(self.name)
+
+
+class Lead(models.Model):
+    name = models.CharField(max_length=255, blank=True, null=True)
+    company_name = models.CharField(max_length=255, blank=True, null=True)
+    phone = models.CharField(max_length=255, blank=True, null=True)
+    email = models.CharField(max_length=255, blank=True, null=True)
+
+    created_on = models.DateTimeField(auto_now_add=True)
+    updated_on = models.DateTimeField(auto_now=True)
+
+    class Meta:
+        db_table = 'lead'
+
+    def __str__(self):
+        return str(self.name)
+
+
+class Blog(models.Model):
+    uuid = models.UUIDField(default=uuid.uuid4, unique=True)
+    blog_title = models.CharField(max_length=255, unique=True)
+    blog_image = models.FileField(blank=True, null=True)
+    blog_description = models.TextField()
+    blog_content = models.TextField()
+
+    class Meta:
+        db_table = 'blog'
+
+    def __str__(self):
+        return str(self.blog_title)

@@ -46,6 +46,7 @@ INSTALLED_APPS = [
     'django_better_admin_arrayfield',
     'corsheaders',
     'storages',
+    'blog',
 ]
 
 MIDDLEWARE = [
@@ -155,7 +156,7 @@ AUTH_PASSWORD_VALIDATORS = [
 
 LANGUAGE_CODE = 'en-us'
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'Asia/Kolkata'
 
 USE_I18N = True
 
@@ -185,3 +186,12 @@ AWS_S3_CUSTOM_DOMAIN = '%s.s3.amazonaws.com' % AWS_STORAGE_BUCKET_NAME
 DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
 
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media/')
+
+
+# Email Config
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_USE_TLS = True
+EMAIL_PORT = 587
+EMAIL_HOST_USER = 'tech.gdse@gmail.com'
+EMAIL_HOST_PASSWORD = 'TG@3885g'
