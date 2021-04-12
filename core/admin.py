@@ -13,6 +13,7 @@ class ProductImageAdmin(admin.StackedInline):
 class ProductAdmin(admin.ModelAdmin):
     inlines = [ProductImageAdmin]
     readonly_fields = ('uuid',)
+    list_display = ['name', 'categories']
 
 
 @admin.register(Category)

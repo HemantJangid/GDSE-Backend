@@ -38,7 +38,7 @@ class Category(models.Model):
 class Product(models.Model):
     uuid = models.UUIDField(default=uuid.uuid4, unique=True)
     main_product = models.BooleanField(default=False)
-    category = models.ForeignKey(Category, on_delete=models.CASCADE)
+    category = models.ManyToManyField(Category)
     name = models.CharField(max_length=255, unique=True)
     display_position = models.IntegerField(blank=True, null=True)
     image_url = models.FileField(blank=True, null=True)
@@ -55,6 +55,9 @@ class Product(models.Model):
 
     def __str__(self):
         return str(self.name)
+
+    def categories(self):
+        return ', '.join(str(c) for c in self.category.all())
 
 
 class ProductImage(models.Model):
