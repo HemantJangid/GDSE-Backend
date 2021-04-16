@@ -6,13 +6,13 @@ class CategoryDto(serializers.ModelSerializer):
     class Meta:
         model = Category
         fields = ('uuid', 'name', 'display_position', 'image_url',
-                  'bg_image', 'title', 'slug')
+                  'landing_image', 'title', 'slug')
 
 
 class ProductDto(serializers.ModelSerializer):
     class Meta:
         model = Product
-        fields = ('uuid', 'main_product', 'category', 'name',
+        fields = ('uuid', 'category', 'name',
                   'display_position', 'image_url', 'bg_image', 'title', 'slug')
 
 

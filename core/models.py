@@ -19,8 +19,7 @@ class Category(models.Model):
     name = models.CharField(max_length=255, unique=True)
     display_position = models.IntegerField()
     image_url = models.FileField(blank=True, null=True)
-    bg_image = models.CharField(
-        max_length=255, null=True, blank=True, default='')
+    landing_image = models.FileField(blank=True, null=True)
     title = models.CharField(max_length=255, null=True, blank=True, default='')
     slug = models.CharField(max_length=255, null=True, blank=True, default='')
     is_archived = models.BooleanField(default=False)
@@ -37,7 +36,6 @@ class Category(models.Model):
 
 class Product(models.Model):
     uuid = models.UUIDField(default=uuid.uuid4, unique=True)
-    main_product = models.BooleanField(default=False)
     category = models.ManyToManyField(Category)
     name = models.CharField(max_length=255, unique=True)
     display_position = models.IntegerField(blank=True, null=True)
