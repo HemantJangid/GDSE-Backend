@@ -17,7 +17,7 @@ class SendMailView(APIView):
             return bad_request(attributes.errors)
 
         message = Mail(
-            from_email='tech.gdse@gmail.com',
+            from_email='contactus@gdsebike.com',
             to_emails=attributes.data['recipient_list'],
             subject=attributes.data['subject'],
             html_content=attributes.data['message'])
